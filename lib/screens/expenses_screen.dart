@@ -107,8 +107,21 @@ Future<void> _deleteExpense(int id) async {
                 Expanded(
                   child: _expenses.isEmpty
                       ? const Center(
-                          child: Text(
-                            'No expenses yet',
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.receipt_long,
+                                size: 72,
+                              ),
+                              SizedBox(height: 16),
+                              Text(
+                                'No expenses yet',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
                           ),
                         )
                       : ListView.builder(
