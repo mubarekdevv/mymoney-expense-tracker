@@ -10,7 +10,17 @@ class PinScreen extends StatefulWidget {
   State<PinScreen> createState() => _PinScreenState();
 }
 
+class _PinScreenState extends State<PinScreen> {
+  final _controller = TextEditingController();
 
+  bool _hasPin = false;
+
+  bool _loading = true;
+
+  String? _error;
+
+
+}
 
 
 
