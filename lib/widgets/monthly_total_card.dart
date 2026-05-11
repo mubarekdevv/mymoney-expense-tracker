@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mymoney/services/prefs_service.dart';
+import 'package:mymoney/utils/currency_formatter.dart';
 
 class MonthlyTotalCard extends StatelessWidget {
   final double total;
@@ -24,12 +26,19 @@ class MonthlyTotalCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
-              total.toStringAsFixed(2),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+            FutureBuilder<String>(
+              future: PrefsService.getCurrency(),
+              builder: (context, snapshot) {
+                final currency = snapshot.data ?? 'ETB';
+
+                return Text(
+                  formatCurrency(total, currency),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
             ),
           ],
         ),
