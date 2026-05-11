@@ -15,4 +15,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _darkMode = false;
 
   bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loadPrefs();
+  }
+
+  Future<void> _loadPrefs() async {
+    final currency = await PrefsService.getCurrency();
+
+    final darkMode = await PrefsService.isDarkMode();
+
+    setState(() {
+      _currency = currency;
+      _darkMode = darkMode;
+      _loading = false;
+    });
+  }
 }
