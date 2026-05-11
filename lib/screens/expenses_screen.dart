@@ -66,4 +66,73 @@ Future<void> _deleteExpense(int id) async {
 
     _loadData();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('MyMoney'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _openEditor(),
+        child: const Icon(Icons.add),
+      ),
+      body: _loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Column(
+              children: [
+                MonthlyTotalCard(
+                  total: _monthlyTotal,
+                ),
+                Expanded(
+                  child: _expenses.isEmpty
+                      ? const Center(
+                          child: Text(
+                            'No expenses yet',
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: _expenses.length,
+                          itemBuilder: (context, index) {
+                            final expense = _expenses[index];
+
+                            return Dismissible(
+                              key: ValueKey(
+                                expense.id,
+                              ),
+                              direction: DismissDirection.endToStart,
+                              background: Container(
+                                alignment: Alignment.centerRight,
+                                padding: const EdgeInsets.only(
+                                  right: 20,
+                                ),
+                                color: Colors.red,
+                                child: const Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              onDismissed: (_) {
+                                _deleteExpense(
+                                  expense.id!,
+                                );
+                              },
+                              child: ExpenseTile(
+                                expense: expense,
+                                onTap: () {
+                                  _openEditor(
+                                    expense: expense,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                ),
+              ],
+            ),
+    );
+  }
 }
