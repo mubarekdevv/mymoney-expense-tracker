@@ -49,11 +49,25 @@ class ExpensesDb {
 
   //insert expense
   Future<int> insertExpense(Expense expense) async {
+    final db = await instance.database;
+
+    return await db.insert(
+      'expenses',
+      expense.toMap(),
+    );
+  }
+
+  //fetching all the expenses
+  Future<List<Expense>> getAllExpenses() async {
   final db = await instance.database;
 
-  return await db.insert(
+  final result = await db.query(
     'expenses',
-    expense.toMap(),
+    orderBy: 'date DESC',
   );
+
+  return result
+      .map((map) => Expense.fromMap(map))
+      .toList();
 }
 }
