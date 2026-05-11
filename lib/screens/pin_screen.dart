@@ -63,7 +63,14 @@ class _PinScreenState extends State<PinScreen> {
     }
   }
 
- 
+  void _openExpenses() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ExpensesScreen(),
+      ),
+    );
+  }
 
 
 }
