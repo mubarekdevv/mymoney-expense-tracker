@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mymoney/screens/settings_screen.dart';
 
 import '../models/expense.dart';
 import '../services/expenses_db.dart';
@@ -72,6 +73,23 @@ Future<void> _deleteExpense(int id) async {
     return Scaffold(
       appBar: AppBar(
         title: const Text('MyMoney'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const SettingsScreen(),
+                ),
+              );
+
+              _loadData();
+
+              setState(() {});
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openEditor(),
