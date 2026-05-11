@@ -33,10 +33,10 @@ class ExpensesDb {
 
   //create table
   Future<void> _createDb(
-  Database db,
-  int version,
-) async {
-  await db.execute('''
+    Database db,
+    int version,
+  ) async {
+    await db.execute('''
     CREATE TABLE expenses(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       amount REAL NOT NULL,
@@ -45,5 +45,15 @@ class ExpensesDb {
       date TEXT NOT NULL
     )
   ''');
+  }
+
+  //insert expense
+  Future<int> insertExpense(Expense expense) async {
+  final db = await instance.database;
+
+  return await db.insert(
+    'expenses',
+    expense.toMap(),
+  );
 }
 }
