@@ -20,5 +20,30 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
 
   bool _loading = true;
 
-  
+  @override
+void initState() {
+  super.initState();
+
+  _loadData();
+}
+
+Future<void> _loadData() async {
+  final expenses =
+      await ExpensesDb.instance.getAllExpenses();
+
+  final now = DateTime.now();
+
+  final total =
+      await ExpensesDb.instance.getTotalByMonth(
+    now.year,
+    now.month,
+  );
+
+  setState(() {
+    _expenses = expenses;
+    _monthlyTotal = total;
+    _loading = false;
+  });
+}
+
 }
