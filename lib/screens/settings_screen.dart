@@ -34,4 +34,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _loading = false;
     });
   }
+
+  Future<void> _changeCurrency(
+    String? value,
+  ) async {
+    if (value == null) return;
+
+    await PrefsService.setCurrency(value);
+
+    setState(() {
+      _currency = value;
+    });
+  }
 }
