@@ -74,6 +74,15 @@ class _ExpenseEditorState extends State<ExpenseEditor> {
   }
 
   @override
+  void dispose() {
+    _amountController.dispose();
+    _categoryController.dispose();
+    _noteController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isEditing = widget.expense != null;
 
