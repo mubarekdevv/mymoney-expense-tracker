@@ -82,4 +82,76 @@ class _ExpenseEditorState extends State<ExpenseEditor> {
     super.dispose();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final isEditing = widget.expense != null;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          isEditing ? 'Edit Expense' : 'Add Expense',
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _amountController,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'Amount',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter amount';
+                  }
+
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _categoryController,
+                decoration: const InputDecoration(
+                  labelText: 'Category',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter category';
+                  }
+
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _noteController,
+                decoration: const InputDecoration(
+                  labelText: 'Note',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _saveExpense,
+                  child: Text(
+                    isEditing ? 'Update Expense' : 'Save Expense',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
