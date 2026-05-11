@@ -132,9 +132,50 @@ Future<void> _deleteExpense(int id) async {
                                   color: Colors.white,
                                 ),
                               ),
+                              confirmDismiss: (_) async {
+                                return await showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text(
+                                        'Delete Expense',
+                                      ),
+                                      content: const Text(
+                                        'Are you sure?',
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(
+                                              context,
+                                              false,
+                                            );
+                                          },
+                                          child: const Text('Cancel'),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(
+                                              context,
+                                              true,
+                                            );
+                                          },
+                                          child: const Text('Delete'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               onDismissed: (_) {
-                                _deleteExpense(
-                                  expense.id!,
+                                _deleteExpense(expense.id!);
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Expense deleted',
+                                    ),
+                                  ),
                                 );
                               },
                               child: ExpenseTile(
