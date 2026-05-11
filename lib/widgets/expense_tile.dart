@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mymoney/services/prefs_service.dart';
+import 'package:mymoney/utils/currency_formatter.dart';
 
 import '../models/expense.dart';
 
@@ -17,33 +19,43 @@ class ExpenseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final formattedDate = DateFormat.yMMMd().format(expense.date);
 
-    return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 6,
-      ),
-      child: ListTile(
-        onTap: onTap,
-        leading: CircleAvatar(
-          child: Text(
-            expense.category[0].toUpperCase(),
+    return FutureBuilder<String>(
+      future: PrefsService.getCurrency(),
+      builder: (context, snapshot) {
+        final currency = snapshot.data ?? 'ETB';
+
+        return Card(
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 6,
           ),
-        ),
-        title: Text(expense.category),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(expense.note),
-            Text(formattedDate),
-          ],
-        ),
-        trailing: Text(
-          expense.amount.toStringAsFixed(2),
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
+          child: ListTile(
+            onTap: onTap,
+            leading: CircleAvatar(
+              child: Text(
+                expense.category[0].toUpperCase(),
+              ),
+            ),
+            title: Text(expense.category),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(expense.note),
+                Text(formattedDate),
+              ],
+            ),
+            trailing: Text(
+              formatCurrency(
+                expense.amount,
+                currency,
+              ),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
