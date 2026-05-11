@@ -91,4 +91,35 @@ class ExpensesDb {
       whereArgs: [id],
     );
   }
+
+  //monthly sum queery
+  Future<double> getTotalByMonth(
+    int year,
+    int month,
+  ) async {
+    final db = await instance.database;
+
+    final start = DateTime(year, month, 1);
+
+    final end =
+        month == 12 ? DateTime(year + 1, 1, 1) : DateTime(year, month + 1, 1);
+
+    final result = await db.rawQuery(
+      '''
+    SELECT SUM(amount) as total
+    FROM expenses
+    WHERE date >= ? AND date < ?
+    ''',
+      [
+        start.toIso8601String(),
+        end.toIso8601String(),
+      ],
+    );
+
+    final total = result.first['total'];
+
+    if (total == null) return 0.0;
+
+    return total as double;
+  }
 }
