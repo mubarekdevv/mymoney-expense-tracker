@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mymoney/models/expense.dart';
+import 'package:mymoney/screens/pin_screen.dart';
 
 void main() {
 
@@ -15,14 +16,7 @@ class MyMoneyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MyMoney',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Center(child: const Text('MyMoney')),
-        ),
-        body: const Center(
-          child: Text('Expense Model is Ready'),
-        ),
-      ),
+      home: const PinScreen(),
     );
   }
 }
