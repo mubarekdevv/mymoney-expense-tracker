@@ -46,4 +46,9 @@ Future<void> _loadData() async {
   });
 }
 
+Future<void> _deleteExpense(int id) async {
+    await ExpensesDb.instance.deleteExpense(id);
+
+    _loadData();
+  }
 }
