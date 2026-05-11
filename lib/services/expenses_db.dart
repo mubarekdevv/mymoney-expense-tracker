@@ -122,4 +122,11 @@ class ExpensesDb {
 
     return total as double;
   }
+
+  //clear database method
+  Future<void> clearAllExpenses() async {
+      final db = await instance.database;
+
+      await db.delete('expenses');
+    }
 }
