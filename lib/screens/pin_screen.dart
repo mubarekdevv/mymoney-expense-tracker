@@ -35,6 +35,37 @@ class _PinScreenState extends State<PinScreen> {
     });
   }
 
+  Future<void> _submit() async {
+    final pin = _controller.text.trim();
+
+    if (pin.length != 4) {
+      setState(() {
+        _error = 'PIN must be 4 digits';
+      });
+
+      return;
+    }
+
+    if (!_hasPin) {
+      await PinVault.savePin(pin);
+
+      _openExpenses();
+    } else {
+      final correct = await PinVault.verifyPin(pin);
+
+      if (correct) {
+        _openExpenses();
+      } else {
+        setState(() {
+          _error = 'Incorrect PIN';
+        });
+      }
+    }
+  }
+
+ 
+
+
 }
 
 
