@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mymoney/models/expense.dart';
+import 'package:mymoney/services/expenses_db.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final db = ExpensesDb.instance;
+
+  await db.insertExpense(Expense(
+    amount: 500, 
+    category: 'Food', 
+    note: 'Burger', 
+    date: DateTime.now(),
+    ),
+  );
+
+  final expenses = await db.getAllExpenses();
+  print(expenses.length);
 
   runApp(const MyMoneyApp());
 }
