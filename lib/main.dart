@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mymoney/models/expense.dart';
 
 void main() {
+
   runApp(const MyMoneyApp());
 }
 
@@ -17,7 +19,7 @@ class MyMoneyApp extends StatelessWidget {
           title: Center(child: const Text('MyMoney')),
         ),
         body: const Center(
-          child: Text('Setup Complete'),
+          child: Text('Expense Model is Ready'),
         ),
       ),
     );
