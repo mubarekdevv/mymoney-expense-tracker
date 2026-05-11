@@ -130,6 +130,38 @@ class _PinScreenState extends State<PinScreen> {
     );
   }
 
+  Future<void> _confirmReset() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Reset App'),
+          content: const Text(
+            'This will delete your PIN and all expenses.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: const Text('Reset'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed == true) {
+      _resetApp();
+    }
+  }
+
   Future<void> _resetApp() async {
     await PinVault.clearPin();
 
