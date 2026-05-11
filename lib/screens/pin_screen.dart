@@ -39,6 +39,10 @@ class _PinScreenState extends State<PinScreen> {
   Future<void> _submit() async {
     final pin = _controller.text.trim();
 
+    setState(() {
+      _error = null;
+    });
+
     if (pin.length != 4) {
       setState(() {
         _error = 'PIN must be 4 digits';
