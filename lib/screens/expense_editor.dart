@@ -42,4 +42,34 @@ class _ExpenseEditorState extends State<ExpenseEditor> {
       text: expense?.note ?? '',
     );
   }
+
+  Future<void> _saveExpense() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    final expense = Expense(
+      id: widget.expense?.id,
+      amount: double.parse(
+        _amountController.text.trim(),
+      ),
+      category: _categoryController.text.trim(),
+      note: _noteController.text.trim(),
+      date: widget.expense?.date ?? DateTime.now(),
+    );
+
+    if (widget.expense == null) {
+      await ExpensesDb.instance.insertExpense(
+        expense,
+      );
+    } else {
+      await ExpensesDb.instance.updateExpense(
+        expense,
+      );
+    }
+
+    if (!mounted) return;
+
+    Navigator.pop(context);
+  }
 }
