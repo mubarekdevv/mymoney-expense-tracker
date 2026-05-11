@@ -46,4 +46,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _currency = value;
     });
   }
+
+  Future<void> _toggleTheme(
+    bool value,
+  ) async {
+    await PrefsService.setDarkMode(value);
+
+    setState(() {
+      _darkMode = value;
+    });
+  }
 }
