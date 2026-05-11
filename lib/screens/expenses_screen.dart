@@ -51,4 +51,19 @@ Future<void> _deleteExpense(int id) async {
 
     _loadData();
   }
+
+  Future<void> _openEditor({
+    Expense? expense,
+  }) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ExpenseEditor(
+          expense: expense,
+        ),
+      ),
+    );
+
+    _loadData();
+  }
 }
