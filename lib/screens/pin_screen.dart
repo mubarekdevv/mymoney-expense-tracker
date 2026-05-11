@@ -19,6 +19,21 @@ class _PinScreenState extends State<PinScreen> {
 
   String? _error;
 
+  @override
+  void initState() {
+    super.initState();
+
+    _loadPinState();
+  }
+
+  Future<void> _loadPinState() async {
+    final hasPin = await PinVault.hasPin();
+
+    setState(() {
+      _hasPin = hasPin;
+      _loading = false;
+    });
+  }
 
 }
 
