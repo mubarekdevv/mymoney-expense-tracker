@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mymoney/services/expenses_db.dart';
 
 import '../services/pin_vault.dart';
 import 'expenses_screen.dart';
@@ -118,6 +119,18 @@ class _PinScreenState extends State<PinScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _resetApp() async {
+    await PinVault.clearPin();
+
+    await ExpensesDb.instance.clearAllExpenses();
+
+    setState(() {
+      _hasPin = false;
+      _controller.clear();
+      _error = null;
+    });
   }
 
 }
