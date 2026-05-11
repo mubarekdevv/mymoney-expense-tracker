@@ -48,6 +48,8 @@ class _ExpenseEditorState extends State<ExpenseEditor> {
       return;
     }
 
+    final isEditing = widget.expense != null;
+
     final expense = Expense(
       id: widget.expense?.id,
       amount: double.parse(
@@ -69,6 +71,14 @@ class _ExpenseEditorState extends State<ExpenseEditor> {
     }
 
     if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          isEditing ? 'Expense updated' : 'Expense added',
+        ),
+      ),
+    );
 
     Navigator.pop(context);
   }
