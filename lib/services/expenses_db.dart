@@ -59,15 +59,25 @@ class ExpensesDb {
 
   //fetching all the expenses
   Future<List<Expense>> getAllExpenses() async {
-  final db = await instance.database;
+    final db = await instance.database;
 
-  final result = await db.query(
-    'expenses',
-    orderBy: 'date DESC',
-  );
+    final result = await db.query(
+      'expenses',
+      orderBy: 'date DESC',
+    );
 
-  return result
-      .map((map) => Expense.fromMap(map))
-      .toList();
-}
+    return result.map((map) => Expense.fromMap(map)).toList();
+  }
+
+  //update expense
+  Future<int> updateExpense(Expense expense) async {
+    final db = await instance.database;
+
+    return await db.update(
+      'expenses',
+      expense.toMap(),
+      where: 'id = ?',
+      whereArgs: [expense.id],
+    );
+  }
 }
