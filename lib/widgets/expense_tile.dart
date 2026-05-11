@@ -58,4 +58,26 @@ class ExpenseTile extends StatelessWidget {
       },
     );
   }
+
+  IconData _getCategoryIcon(String category) {
+    final value = category.toLowerCase();
+
+    if (value.contains('food')) {
+      return Icons.restaurant;
+    }
+
+    if (value.contains('transport')) {
+      return Icons.directions_car;
+    }
+
+    if (value.contains('shopping')) {
+      return Icons.shopping_bag;
+    }
+
+    if (value.contains('health')) {
+      return Icons.health_and_safety;
+    }
+
+    return Icons.attach_money;
+  }
 }
