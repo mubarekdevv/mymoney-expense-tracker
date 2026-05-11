@@ -122,9 +122,20 @@ class _ExpenseEditorState extends State<ExpenseEditor> {
                   labelText: 'Category',
                   border: OutlineInputBorder(),
                 ),
+
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Enter category';
+                    return 'Enter amount';
+                  }
+
+                  final amount = double.tryParse(value.trim());
+
+                  if (amount == null) {
+                    return 'Enter valid number';
+                  }
+
+                  if (amount <= 0) {
+                    return 'Amount must be positive';
                   }
 
                   return null;

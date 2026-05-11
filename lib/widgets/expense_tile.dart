@@ -32,8 +32,8 @@ class ExpenseTile extends StatelessWidget {
           child: ListTile(
             onTap: onTap,
             leading: CircleAvatar(
-              child: Text(
-                expense.category[0].toUpperCase(),
+              child: Icon(
+                _getCategoryIcon(expense.category),
               ),
             ),
             title: Text(expense.category),
