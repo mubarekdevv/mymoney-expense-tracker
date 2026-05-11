@@ -80,4 +80,15 @@ class ExpensesDb {
       whereArgs: [expense.id],
     );
   }
+
+  //delete expense
+  Future<int> deleteExpense(int id) async {
+    final db = await instance.database;
+
+    return await db.delete(
+      'expenses',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
