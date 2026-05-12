@@ -62,6 +62,32 @@ Used for date formatting and localization-friendly formatting utilities.
 
 ---
 
+# Project Structure
+
+```text
+lib/
+├── main.dart
+├── models/
+│   └── expense.dart
+├── services/
+│   ├── expenses_db.dart
+│   ├── pin_vault.dart
+│   └── prefs_service.dart
+├── screens/
+│   ├── expenses_screen.dart
+│   ├── expense_editor.dart
+│   ├── pin_screen.dart
+│   └── settings_screen.dart
+├── widgets/
+│   ├── expense_tile.dart
+│   └── monthly_total_card.dart
+└── utils/
+    └── currency_formatter.dart
+```
+
+---
+
+
 
 
 
