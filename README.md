@@ -2,6 +2,45 @@
 
 Offline-first Flutter mobile application for personal expense management built with secure local authentication, SQLite persistence, dynamic theming, and clean layered architecture.
 
+---
+
+# Features
+
+## Secure PIN Authentication
+- First-launch 4-digit PIN setup
+- Secure PIN verification on every app launch
+- PIN stored using `flutter_secure_storage`
+- Full app reset with secure PIN wipe and database cleanup
+
+## Expense Management (SQLite CRUD)
+- Add expenses with amount, category, note, and date
+- View all expenses sorted by newest first
+- Edit existing expenses
+- Swipe-to-delete with confirmation dialog
+- Monthly expense total calculation using SQLite `SUM` query
+
+## Persistent User Preferences
+- Currency selection:
+  - ETB
+  - USD
+  - EUR
+- Light/Dark theme switching
+- Preferences persist across app restarts
+
+## Professional UI/UX
+- Material 3 design
+- Responsive layout
+- Reusable widgets
+- Empty-state UI
+- Snackbar feedback
+- Form validation
+- Clean navigation flow
+
+## Offline-First Architecture
+All application features work completely offline without requiring internet connectivity.
+
+---
+
 
 
 
