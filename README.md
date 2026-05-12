@@ -112,3 +112,38 @@ This improves:
 
 ---
 
+# Getting Started
+
+## Prerequisites
+- Flutter SDK
+- Android Studio or VS Code
+- Android Emulator or physical Android device
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/mubarekdevv/mymoney-expense-tracker
+```
+
+Navigate into the project:
+
+```bash
+cd mymoney-expense-tracker
+```
+
+Install dependencies:
+
+```bash
+flutter pub get
+```
+
+Run the application:
+
+```bash
+flutter run
+```
+
