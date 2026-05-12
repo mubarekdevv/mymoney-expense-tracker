@@ -41,6 +41,27 @@ All application features work completely offline without requiring internet conn
 
 ---
 
+# Tech Stack
+
+## Flutter
+Cross-platform UI toolkit for building Android applications.
+
+## SQLite (`sqflite`)
+Used for local expense persistence and CRUD operations.
+
+## SharedPreferences
+Used for storing lightweight app preferences such as:
+- theme mode
+- currency selection
+
+## flutter_secure_storage
+Used for securely storing the user's authentication PIN.
+
+## intl
+Used for date formatting and localization-friendly formatting utilities.
+
+---
+
 
 
 
