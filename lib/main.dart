@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'screens/pin_screen.dart';
 import 'services/prefs_service.dart';
+import 'services/theme_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final darkMode = await PrefsService.isDarkMode();
+
+  ThemeController.isDarkMode.value = darkMode;
 
   runApp(const MyMoneyApp());
 }
@@ -14,11 +19,13 @@ class MyMoneyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: PrefsService.isDarkMode(),
-      builder: (context, snapshot) {
-        final darkMode = snapshot.data ?? false;
-
+    return ValueListenableBuilder(
+      valueListenable: ThemeController.isDarkMode,
+      builder: (
+        context,
+        darkMode,
+        _,
+      ) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'MyMoney',
