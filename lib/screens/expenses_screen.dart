@@ -109,13 +109,13 @@ Future<void> _deleteExpense(int id) async {
                       ? const Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(
+                            children: [
+                              const Icon(
                                 Icons.receipt_long,
                                 size: 72,
                               ),
-                              SizedBox(height: 16),
-                              Text(
+                              const SizedBox(height: 16),
+                              const Text(
                                 'No expenses yet',
                                 style: TextStyle(
                                   fontSize: 18,

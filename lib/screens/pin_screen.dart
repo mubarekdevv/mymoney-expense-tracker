@@ -121,7 +121,7 @@ class _PinScreenState extends State<PinScreen> {
             ),
             const SizedBox(height: 12),
             TextButton(
-              onPressed: _resetApp,
+              onPressed: _confirmReset,
               child: const Text('Reset PIN'),
             ),
           ],
