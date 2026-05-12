@@ -87,7 +87,28 @@ lib/
 
 ---
 
+# Architecture Decisions
 
+## Why SQLite?
+SQLite provides structured local persistence and efficient querying for expense records, making it ideal for offline-first financial tracking applications.
 
+## Why flutter_secure_storage?
+Authentication credentials should never be stored in plain text. `flutter_secure_storage` encrypts sensitive data securely on the device.
 
+## Why SharedPreferences?
+Application preferences such as theme mode and currency are lightweight key-value data and fit perfectly with SharedPreferences.
+
+## Why Service Layer Separation?
+The application follows clean separation of concerns:
+- UI layer handles presentation
+- Services layer handles storage and persistence
+- Models handle data representation
+
+This improves:
+- maintainability
+- scalability
+- readability
+- testing
+
+---
 
